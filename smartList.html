@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8" />
+	<title>jQuery.smartList-点击下拉+可输入</title>
+	<style type="text/css">
+		html,body{margin:0px;padding:0px;font-family:微软雅黑;font-size:12px;}
+		.main{width:960px;margin:0 auto;}
+		.main>hr{margin-bottom:20px;}
+	</style>
+  </head>
+  <body>
+  <div class="main">
+	<h1>jQuery smartList 示例</h1>
+	<hr/>
+		<input type="text" class="dropText" /><button type="button" onclick="alertValue()">取值</button>
+  </div>
+	<!--脚本引入-->
+	<script src="jquery-1.7.2.js"></script>
+	<script src="jquery.smartList-1.2.js"></script>
+	<script type="text/javascript">
+		var choseValue;
+		var jsonStr = {//json对象
+			arr:[
+					{groupName:"分组1",groupChild:[{text:"abc",id:"cba",name:"haha"},{text:"abcde"},{text:"bcde"},{text:"ab1"}]},
+					{groupName:"分组2",groupChild:[{text:"ab123"},{text:"a132"},{text:"abc32"}]},
+					{groupName:"分组3",groupChild:[{text:"123bcd"},{text:"1def"},{text:"abcdef"}]},
+					{groupName:"分组4",groupChild:[{text:"ab12345"},{text:"12abc"},{text:"bcdefk"}]}
+				]
+		};
+		$(".dropText").searchList({
+			clickResponse:true,//点击文本框是否响应
+			listMaxHeight:"200px",//下拉列表最大高度
+			listMaxWidth :"large",//下拉列表宽度，分small/middle/large三种
+			content :jsonStr.arr,//下拉内容
+			onSelected:function(obj){//回调函数
+				choseValue = obj;
+			}
+		});
+		
+		function alertValue(){
+			console.log(choseValue.name);
+		};
+	</script>
+  </body>
+</html>
